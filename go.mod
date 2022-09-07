@@ -1,4 +1,4 @@
-module github.com/keptn-service-template-go
+module github.com/ortelius/keptn-ortelius-service
 
 go 1.17
 

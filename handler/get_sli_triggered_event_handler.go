@@ -13,7 +13,7 @@ func NewGetSliEventHandler() *GetSliEventHandler {
 	return &GetSliEventHandler{}
 }
 
-// Execute handles get-sli.triggered events if SLIProvider == keptn-service-template-go
+// Execute handles get-sli.triggered events if SLIProvider == keptn-ortelius-service
 // This function acts as an example showing how to handle get-sli events
 // TODO: Adapt handler code to your needs
 func (g *GetSliEventHandler) Execute(k sdk.IKeptn, event sdk.KeptnEvent) (interface{}, *sdk.Error) {
@@ -26,13 +26,13 @@ func (g *GetSliEventHandler) Execute(k sdk.IKeptn, event sdk.KeptnEvent) (interf
 	}
 
 	// Check if the event belongs to our SLI Provider
-	if sliTriggeredEvent.GetSLI.SLIProvider != "keptn-service-template-go" {
+	if sliTriggeredEvent.GetSLI.SLIProvider != "keptn-ortelius-service" {
 		k.Logger().Infof("Not handling get-sli event as it is meant for %s", sliTriggeredEvent.GetSLI.SLIProvider)
 		return nil, nil
 	}
 
-	// Get SLI File from keptn-service-template-go subdirectory of the config repo - to add the file use:
-	sliFile := "keptn-service-template-go/sli.yaml"
+	// Get SLI File from keptn-ortelius-service subdirectory of the config repo - to add the file use:
+	sliFile := "keptn-ortelius-service/sli.yaml"
 	resourceScope := *api.NewResourceScope().Project(sliTriggeredEvent.Project).Stage(sliTriggeredEvent.Stage).Service(sliTriggeredEvent.Service).Resource(sliFile)
 	sliConfigFileContent, err := k.GetResourceHandler().GetResource(resourceScope)
 
