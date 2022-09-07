@@ -1,11 +1,12 @@
 package main
 
 import (
-	"github.com/keptn-ortelius-service/handler"
-	"github.com/keptn/go-utils/pkg/sdk"
-	"github.com/sirupsen/logrus"
 	"log"
 	"os"
+
+	"github.com/keptn/go-utils/pkg/sdk"
+	"github.com/ortelius/keptn-ortelius-service/handler"
+	"github.com/sirupsen/logrus"
 )
 
 const getSliTriggeredEvent = "sh.keptn.event.get-sli.triggered"
