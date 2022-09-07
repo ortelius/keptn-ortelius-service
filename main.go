@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/keptn-service-template-go/handler"
+	"github.com/keptn-ortelius-service/handler"
 	"github.com/keptn/go-utils/pkg/sdk"
 	"github.com/sirupsen/logrus"
 	"log"
@@ -10,7 +10,7 @@ import (
 
 const getSliTriggeredEvent = "sh.keptn.event.get-sli.triggered"
 const actionTriggeredEvent = "sh.keptn.event.action.triggered"
-const serviceName = "keptn-service-template-go"
+const serviceName = "keptn-ortelius-service"
 const envVarLogLevel = "LOG_LEVEL"
 
 func main() {
