@@ -1,7 +1,7 @@
 image:
   repository: bradmccoydev/keptn-ortelius-service # Container Image Name
   pullPolicy: IfNotPresent                   # Kubernetes Image Pull Policy
-  tag: ""                                    # Container Tag
+  tag: "dev"                                 # Container Tag
 service:
   enabled: true                              # Creates a Kubernetes Service for the keptn-ortelius-service
 
