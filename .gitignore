@@ -16,7 +16,6 @@ vendor/*
 
 # binaries (created by go build on Linux/OSX)
 main
-keptn-ortelius-service
 
 # IDE specific folders
 .vscode
