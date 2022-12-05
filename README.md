@@ -136,19 +136,32 @@ You can find the details in [.github/workflows/reviewdog.yml](.github/workflows/
 
 This repo has automated unit tests for pull requests. 
 
-You can find the details in [.github/workflows/CI.yml](.github/workflows/CI.yml).
+### Initial sequence flow and project direction
 
-### GH Actions/Workflow: Build Docker Images
+```mermaid
+%%{init: { 'sequence': {'showSequenceNumbers': true } } }%%
 
-This repo uses GH Actions and Workflows to test the code and automatically build containers and upload it to `ghcr.io`.
-
-## How to release a new version of this service
-
-It is assumed that the current development takes place in the `main`/`master` branch (either via Pull Requests or directly).
-
-Once you're ready, go to the Actions tab on GitHub, select Pre-Release or Release, and run the action.
-
-
-## License
-
-Please find more information in the [LICENSE](LICENSE) file.
+sequenceDiagram
+Microservice Git Repo->>Keptn: Git Commit via GitHub Action
+Keptn->>Docker Build/Tag: Start Docker Build
+Docker Build/Tag->>Keptn: Running Docker Build
+Docker Build/Tag->>Keptn: Finished Docker Build
+Keptn->>Docker Push: Start Docker Push
+Docker Push->>Keptn: Running Docker Push
+Docker Push->>Keptn: Finished Docker Push
+Keptn->>Ortelius: Start Component/App Version
+Ortelius->>Keptn: Running Component/App Version
+Ortelius->>Keptn: Finished Component/App Version
+Keptn->>Ortelius: Start Deploy App Version
+Ortelius->>Keptn: Running Deploy App Version
+Ortelius->>Application Git Repo: Update Helm Charts
+Ortelius->>Keptn: Finished Deploy App Version
+Application Git Repo->>ArgoCD: Start Deployment
+ArgoCD->>Keptn: Running Deployment
+ArgoCD->>Keptn: Finished Deployment
+Keptn->>Ortelius: ArgoCD Deployment Finished
+Ortelius->>Keptn: Finished Deployment Logging
+Keptn->>Quality Gates: Start Quality Gate Check
+Quality Gates->>Keptn: Running Quality Gate Check
+Quality Gates->>Keptn: Finished Quality Gate Check
+```
